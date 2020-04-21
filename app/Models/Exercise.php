@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Exercise extends Model
 {
     protected $fillable = [
-        'name', 'rep', 'weight', 'training_date_id',
+        'title',
     ];
 
-    public function trainingDate()
+    public function trainingExercises()
     {
-        return $this->belongsTo(TrainingDate::class);
+        return $this->belongsTo(TrainingExercise::class);
     }
 }
