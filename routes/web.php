@@ -15,8 +15,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/log', "LogController@index")->name('exerciseLog.index');
-
-//Route::get('/test', 'TestController@index')->name;
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('/log', "LogController@index")->name('exerciseLog.index');
+    Route::get('/publish/{client}', 'LogController@create')->name('exerciseLog.create');
+    Route::post('/publish/{client}', 'LogController@store');
+    Route::get('/clients', 'ClientController@index')->name('client.index');
+    Route::post('/clients', 'ClientController@show');
+});
 
 Auth::routes();

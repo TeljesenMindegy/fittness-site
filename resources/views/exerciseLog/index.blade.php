@@ -1,7 +1,7 @@
 @extends('_layout.master')
 
 @section('content')
-    @foreach($exercises as $exercise)
+    @foreach($trainingExercises as $exercise)
         @if($exercise->trainingDate->user_id == Auth::user()->id )
             <article class="card">
                 <div class="card-header">
