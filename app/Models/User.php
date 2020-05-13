@@ -42,6 +42,11 @@ class User extends Authenticatable
         return $this->hasMany(TrainingDate::class);
     }
 
+    public function posts()
+    {
+        return $this->hasMany(Post::class, 'user_id');
+    }
+
     public function getFullNameAttribute() {
         return "{$this->firstname} {$this->lastname}";
     }

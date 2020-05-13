@@ -5,6 +5,11 @@
       <ul class="navbar-nav flex-row">
         @auth
           <li class="nav-item">
+            <a href="{{ route('profile.show', Auth::user()) }}" class="nav-link">
+              {{ Auth::user()->fullname }}
+            </a>
+          </li>
+          <li class="nav-item">
             <form action="{{ route('logout') }}" method="POST">
               @csrf
               <button class="btn btn-dark mr-3" href="{{ route('logout') }}">{{ __("Logout") }}</button>
@@ -37,14 +42,7 @@
         <li class="nav-item">
           <a class="nav-link" href="{{ url('log') }}">{{ __("Workout log") }}</a>
         </li>
-        <!--li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-        </li-->
       </ul>
-      <!--form class="form-inline mt-2 mt-md-0">
-        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form-->
     </div>
   </nav>
 </header>
