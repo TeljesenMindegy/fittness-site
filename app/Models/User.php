@@ -39,7 +39,7 @@ class User extends Authenticatable
 
     public function training_dates()
     {
-        return $this->hasMany(TrainingDate::class);
+        return $this->hasMany(TrainingDate::class, 'user_id');
     }
 
     public function posts()

@@ -15,7 +15,8 @@ class CreateTrainingDatesTable extends Migration
     {
         Schema::create('training_dates', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->date('date');
+            $table->dateTime('startTime');
+            $table->dateTime('endTime');
             $table->bigInteger('user_id');
             $table->timestamps();
         });

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class TrainingDate extends Model
 {
     protected $fillable = [
-        'date', 'user_id',
+        'startTime', 'endTime', 'user_id',
     ];
 
     public function exercises()
@@ -17,6 +17,6 @@ class TrainingDate extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

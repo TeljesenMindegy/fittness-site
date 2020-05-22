@@ -14,6 +14,8 @@
         @include('_layout._header')
         <main role="main" class="flex-shrink-0">
             <div class="container">
+                @include('_layout.alerts._success')
+                @include('_layout.alerts._error')
                 @yield('content')
             </div>
         </main>

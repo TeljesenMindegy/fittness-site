@@ -26,4 +26,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('/clients', 'ClientController@show');
     Route::get('/publish', 'PostController@create')->name('post.create');
     Route::post('/publish/', 'PostController@store');
+    Route::get('/appointments', 'AppointmentController@show')->name('appointment.show');
+    Route::get('/appointments/record', 'AppointmentController@create')->name('appointment.create');
+    Route::post('/appointments/record', 'AppointmentController@store');
 });

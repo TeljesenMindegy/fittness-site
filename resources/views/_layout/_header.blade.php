@@ -34,7 +34,7 @@
           <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">{{ __("Appointments") }}</a>
+          <a class="nav-link" href="{{ route('appointment.show') }}">{{ __("Appointments") }}</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">{{ __("Meal plan") }}</a>
