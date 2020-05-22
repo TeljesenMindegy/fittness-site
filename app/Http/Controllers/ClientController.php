@@ -10,7 +10,7 @@ class ClientController extends Controller
 {
     public function index() 
     {
-        $clients = TrainingDate::where('date','=', Carbon::now()->toDateString())->get(); // User::All();
+        $clients = TrainingDate::where('date','=', Carbon::now()->toDateString())->get();
         return view("clients.index")
             ->with(['clients' => $clients]);
     }
