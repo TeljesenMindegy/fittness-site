@@ -25,8 +25,13 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/clients', 'ClientController@index')->name('client.index');
     Route::post('/clients', 'ClientController@show');
     Route::get('/publish', 'PostController@create')->name('post.create');
-    Route::post('/publish/', 'PostController@store');
+    Route::post('/publish', 'PostController@store');
+    Route::get('/posts/update/{post}', 'PostController@edit')->name('post.edit');
+    Route::post('/posts/update/{post}', 'PostController@update');
+    Route::post('/posts/delete/{post}', 'PostController@destory')->name('post.delete');
     Route::get('/appointments', 'AppointmentController@show')->name('appointment.show');
     Route::get('/appointments/record', 'AppointmentController@create')->name('appointment.create');
     Route::post('/appointments/record', 'AppointmentController@store');
+    Route::get('/appointments/update/{appointment}', 'AppointmentController@edit')->name('appointment.edit');
+    Route::post('/appointments/update/{appointment}', 'AppointmentController@update');
 });

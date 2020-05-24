@@ -5,7 +5,7 @@
         @if($exercise->trainingDate->user_id == Auth::user()->id )
             <article class="card">
                 <div class="card-header">
-                    {{ $exercise->trainingDate->date }}
+                    {{ $exercise->trainingDate->startTime }}
                 </div>
                 <div class="card-body">
                     <p>{{ $exercise->name }}</p>

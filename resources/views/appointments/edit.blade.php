@@ -2,23 +2,12 @@
 
 @section('content')
 <div class="card w-75 mt-5 mx-auto">
-    <div class="card-header">{{__('Record appointment') }}</div>
+    <div class="card-header">{{__('Update appointment') }}</div>
     <div class="card-body">
-        <form action="{{ route('appointment.create') }}" method="POST">
+        <form action="{{ route('appointment.edit', ['appointment' => $appointment]) }}" method="POST">
             @csrf
 
-            <div class="form-group">
-                <label for="appointment[user_id]">{{ __('Client') }}</label>
-                <select class="form-control{{ $errors->has('appointment.user_id') ? ' is-invalid' : '' }}" name="appointment[user_id]">
-                    <option>{{ __("Select your client") }}</option>
-                    @foreach ($user_options as $client)
-                        <option value="{{ $client->id }}" {{ $client->id == old('appointment.user_id') ? 'selected' : '' }}>{{ $client->fullName }}</option>
-                    @endforeach
-                </select>
-                @foreach ($errors->get('appointment.user_id') as $error)
-                    <p class="invalid-feedback">{{ $error }}</p>
-                @endforeach
-            </div>
+            <input hidden name="appointment[user_id]" value={{$appointment['user_id']}}>
 
             <div class="form-group">
                 <label for="appointment[startTime]">{{ __('Start time')}}</label>

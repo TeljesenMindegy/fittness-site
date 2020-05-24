@@ -22,7 +22,6 @@ class PostController extends Controller
 
     public function store(PostRequest $request)
     {
-        dd(Auth::user());
         $post = Auth::user()
             ->posts()
             ->create($request->post);
@@ -30,5 +29,28 @@ class PostController extends Controller
         return redirect()
             ->route('post.show', ['post' => $post])
             ->with('success', __('Post created successfully'));
+    }
+
+    public function edit(Post $post)
+    {
+        return view('posts.edit')->with(compact('post'));
+    }
+
+    public function update(Post $post, PostRequest $request)
+    {
+        $post->update($request->post);
+
+        return redirect()
+            ->route('post.show', ['post' => $post])
+            ->with('success', __('Post updated successfully'));
+    }
+
+    public function destory(Post $post)
+    {
+        $post->delete();
+
+        return redirect()
+            ->route('profile.show', ['user' => Auth::user()])
+            ->with('success', __('Post deleted successfully'));
     }
 }

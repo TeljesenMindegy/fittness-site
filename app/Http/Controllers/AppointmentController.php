@@ -42,9 +42,20 @@ class AppointmentController extends Controller
             ->with(['appointments' => $appointments]);
     }
 
-    public function update()
+    public function edit(TrainingDate $appointment)
     {
-        //TODO: update appointment
+        return view('appointments.edit')
+            ->with(compact('appointment'));
+    }
+
+    public function update(TrainingDate $appointment, AppointmentRequest $request)
+    {
+        $appointment->update($request->appointment);
+        $appointments = TrainingDate::all();
+
+        return view('appointments.show')
+            ->with(['appointments' => $appointments])
+            ->with('success', __('Appointment updated successfully'));
     }
 
     public function destroy()
