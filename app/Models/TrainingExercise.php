@@ -15,9 +15,9 @@ class TrainingExercise extends Model
         return $this->hasMany(Exercise::class);
     }
 
-    public function trainingDate()
+    public function appointment()
     {
-        return $this->belongsTo(TrainingDate::class);
+        return $this->belongsTo(Appointment::class);
     }
 
 }

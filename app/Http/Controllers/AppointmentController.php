@@ -5,12 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Http\Requests\AppointmentRequest;
-use App\Models\TrainingDate;
+use App\Models\Appointment;
 use Carbon\Carbon;
 use Auth;
 
 class AppointmentController extends Controller
 {
+    // function __construct()
+    // {
+    //     $this->authorizeResource(Appointment::class, 'appointment');
+    // }
+
     public function index()
     {
         //TODO: list all apointments for trainer
@@ -27,7 +32,7 @@ class AppointmentController extends Controller
 
     public function store(AppointmentRequest $request)
     {
-        TrainingDate::create($request->appointment);
+        Appointment::create($request->appointment);
 
         return redirect()
             ->route('appointment.create')
@@ -37,21 +42,21 @@ class AppointmentController extends Controller
 
     public function show()
     {
-        $appointments = TrainingDate::whereMonth('startTime','=', Carbon::now()->month)->where('user_id', '=', Auth::user()->id)->get();
+        $appointments = Appointment::whereMonth('startTime','=', Carbon::now()->month)->where('user_id', '=', Auth::user()->id)->get();
         return view('appointments.show')
             ->with(['appointments' => $appointments]);
     }
 
-    public function edit(TrainingDate $appointment)
+    public function edit(Appointment $appointment)
     {
         return view('appointments.edit')
             ->with(compact('appointment'));
     }
 
-    public function update(TrainingDate $appointment, AppointmentRequest $request)
+    public function update(Appointment $appointment, AppointmentRequest $request)
     {
         $appointment->update($request->appointment);
-        $appointments = TrainingDate::all();
+        $appointments = Appointment::all();
 
         return view('appointments.show')
             ->with(['appointments' => $appointments])

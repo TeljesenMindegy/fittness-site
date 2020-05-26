@@ -3,15 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\TrainingDate;
+use App\Models\Appointment;
 use Carbon\Carbon;
 
 class ClientController extends Controller
 {
     public function index() 
     {
-        //dd(Carbon::now()->toDateString());
-        $clients = TrainingDate::whereDate('startTime','=', Carbon::now()->toDateString())->get();
+        $clients = Appointment::whereDate('startTime','=', Carbon::now()->toDateString())->get();
         return view("clients.index")
             ->with(['clients' => $clients]);
     }

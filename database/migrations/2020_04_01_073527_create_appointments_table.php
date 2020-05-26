@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTrainingDatesTable extends Migration
+class CreateAppointmentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateTrainingDatesTable extends Migration
      */
     public function up()
     {
-        Schema::create('training_dates', function (Blueprint $table) {
+        Schema::create('appointments', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->dateTime('startTime');
             $table->dateTime('endTime');
@@ -29,6 +29,6 @@ class CreateTrainingDatesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('training_dates');
+        Schema::dropIfExists('appointments');
     }
 }

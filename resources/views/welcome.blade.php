@@ -6,4 +6,5 @@
 @else
 <h1 class="mt-5">Hello Stranger</h1>
 @endauth
+
 @endsection

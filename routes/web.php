@@ -20,10 +20,6 @@ Route::get('/profile/{user}','ProfileController@show')->name('profile.show');
 
 Route::group(['middleware' => 'auth'], function() {
     Route::get('/log', "LogController@index")->name('exerciseLog.index');
-    Route::get('/workout/{client}', 'LogController@create')->name('exerciseLog.create');
-    Route::post('/workout/{client}', 'LogController@store');
-    Route::get('/clients', 'ClientController@index')->name('client.index');
-    Route::post('/clients', 'ClientController@show');
     Route::get('/publish', 'PostController@create')->name('post.create');
     Route::post('/publish', 'PostController@store');
     Route::get('/posts/update/{post}', 'PostController@edit')->name('post.edit');
@@ -34,4 +30,10 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('/appointments/record', 'AppointmentController@store');
     Route::get('/appointments/update/{appointment}', 'AppointmentController@edit')->name('appointment.edit');
     Route::post('/appointments/update/{appointment}', 'AppointmentController@update');
+    Route::group(['middleware' => 'check.role:trainer'], function() {
+        Route::get('/clients', 'ClientController@index')->name('client.index');
+        Route::post('/clients', 'ClientController@show');
+        Route::get('/workout/{client}', 'LogController@create')->name('exerciseLog.create');
+        Route::post('/workout/{client}', 'LogController@store');
+    });
 });

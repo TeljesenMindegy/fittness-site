@@ -9,6 +9,11 @@ use App\Http\Requests\PostRequest;
 
 class PostController extends Controller
 {
+    function __construct()
+    {
+        $this->authorizeResource(Post::class, 'post');
+    }
+
     public function show(Post $post)
     {
         return view('posts.show')

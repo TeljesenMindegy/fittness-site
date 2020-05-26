@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TrainingDate extends Model
+class Appointment extends Model
 {
     protected $fillable = [
         'startTime', 'endTime', 'user_id',

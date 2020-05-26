@@ -35,11 +35,30 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'roles' => 'array',
     ];
 
-    public function training_dates()
+    public function roles()
     {
-        return $this->hasMany(TrainingDate::class, 'user_id');
+        return $this->belongsToMany('App\Models\Role');
+    }
+
+    public function hasRole($role)
+    {
+        $chosen = \App\Models\Role::where('name', '=', $role)->get();
+        $currentRoles = $this->roles()->get()->toArray();
+
+        foreach($currentRoles as $value) {
+            if ($value['id'] == $chosen->first()->toArray()['id']) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function appointments()
+    {
+        return $this->hasMany(Appointment::class, 'user_id');
     }
 
     public function posts()
