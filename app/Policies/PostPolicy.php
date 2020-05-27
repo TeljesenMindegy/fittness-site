@@ -30,7 +30,6 @@ class PostPolicy
      */
     public function view(User $user, Post $post)
     {
-        dd("mivan");
         return true;
     }
 

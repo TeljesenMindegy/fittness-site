@@ -18,7 +18,7 @@ class CreateTrainingExercisesTable extends Migration
             $table->bigInteger('exercise_id');
             $table->integer('rep');
             $table->integer('weight');
-            $table->bigInteger('training_date_id');
+            $table->bigInteger('appointment_id');
             $table->text('note');
             $table->timestamps();
         });

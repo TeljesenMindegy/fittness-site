@@ -1,9 +1,21 @@
 <header>
-  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-secondary">
     <a class="navbar-brand" href="#">{{ __("Personal trainer") }}</a>
     <div class="d-flex flex-row order-md-2">
       <ul class="navbar-nav flex-row">
         @auth
+          @if(Auth::user()->hasRole('trainer'))
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Train</a>
+              <div class="dropdown-menu" aria-labeledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="{{ route('client.index') }}">{{ __('Start exercise') }}</a>
+                <a class="dropdown-item" href="{{ route('appointment.create') }}">{{ __('Make appointment') }}</a>
+              </div>
+            </li>
+          @endif
+          <li class="nav-item">
+            <a class="btn btn-outline-light" href="{{ route('post.create') }}">{{ __('Publish') }}</a>
+          </li>
           <li class="nav-item">
             <a href="{{ route('profile.show', Auth::user()) }}" class="nav-link">
               {{ Auth::user()->fullname }}
@@ -34,7 +46,7 @@
           <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ route('appointment.show') }}">{{ __("Appointments") }}</a>
+          <a class="nav-link" href="{{ route('appointment.index') }}">{{ __("Appointments") }}</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">{{ __("Meal plan") }}</a>

@@ -25,7 +25,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/posts/update/{post}', 'PostController@edit')->name('post.edit');
     Route::post('/posts/update/{post}', 'PostController@update');
     Route::post('/posts/delete/{post}', 'PostController@destory')->name('post.delete');
-    Route::get('/appointments', 'AppointmentController@show')->name('appointment.show');
+    Route::get('/appointments', 'AppointmentController@index')->name('appointment.index');
     Route::get('/appointments/record', 'AppointmentController@create')->name('appointment.create');
     Route::post('/appointments/record', 'AppointmentController@store');
     Route::get('/appointments/update/{appointment}', 'AppointmentController@edit')->name('appointment.edit');

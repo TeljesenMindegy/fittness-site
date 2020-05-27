@@ -12,6 +12,6 @@ class Exercise extends Model
 
     public function trainingExercises()
     {
-        return $this->belongsTo(TrainingExercise::class);
+        return $this->HasMany(TrainingExercise::class);
     }
 }

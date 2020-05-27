@@ -19,8 +19,11 @@ class LogController extends Controller
 
     public function index()
     {
-        $exercises = TrainingExercise::all();
-        return view("exerciseLog.index")
+        $exercises = TrainingExercise::all()->where('appointment.user_id', Auth::user()->id)->groupBy([function($date) {
+            return \Carbon\Carbon::parse($date->appointment['startTime'])->format('d M yy');
+        }, 'exercise.title']); 
+        
+        return view('exerciseLog.index')
             ->with([
                 'trainingExercises' => $exercises
             ]);

@@ -10,9 +10,9 @@
         <title>{{ __("Fitness site") }}</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">    
     </head>
-    <body class="pt-5 d-flex flex-column h-100">
+    <body class="mt-5 d-flex flex-column h-100 bg-dark">
         @include('_layout._header')
-        <main role="main" class="flex-shrink-0">
+        <main role="main" class="mt-5  m-3tflex-shrink-0">
             <div class="container">
                 @include('_layout.alerts._success')
                 @include('_layout.alerts._error')

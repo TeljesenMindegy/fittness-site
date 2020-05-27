@@ -10,9 +10,9 @@ class TrainingExercise extends Model
         'exercise_id', 'rep', 'weight', 'training_date_id', 'note',
     ];
 
-    public function exercises()
+    public function exercise()
     {
-        return $this->hasMany(Exercise::class);
+        return $this->belongsTo(Exercise::class);
     }
 
     public function appointment()

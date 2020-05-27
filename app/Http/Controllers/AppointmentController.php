@@ -18,7 +18,19 @@ class AppointmentController extends Controller
 
     public function index()
     {
-        //TODO: list all apointments for trainer
+        if (Auth::user()->hasRole("trainer"))
+        {
+            $appointments = Appointment::all();
+        }
+        else
+        {
+            $appointments = Appointment::whereMonth('startTime','=', Carbon::now()->month)->where('user_id', '=', Auth::user()->id)->get();
+        }
+
+        return view('appointments.index')
+            ->with([
+                'appointments' => $appointments
+            ]);
     }
 
     public function create()
@@ -40,11 +52,10 @@ class AppointmentController extends Controller
 
     }
 
-    public function show()
+    public function show(Appointment $appointment)
     {
-        $appointments = Appointment::whereMonth('startTime','=', Carbon::now()->month)->where('user_id', '=', Auth::user()->id)->get();
         return view('appointments.show')
-            ->with(['appointments' => $appointments]);
+            ->with(compact('appointment'));
     }
 
     public function edit(Appointment $appointment)
