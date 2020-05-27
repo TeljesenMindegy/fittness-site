@@ -58,4 +58,14 @@ class PostController extends Controller
             ->route('profile.show', ['user' => Auth::user()])
             ->with('success', __('Post deleted successfully'));
     }
+
+    public function comment(Post $post, Request $request)
+    {
+        $post->comments()->create([
+            'user_id' => Auth::user()->id,
+            'body' => $request->comment,
+        ]);
+
+        return back()->with('success', __('Comment saved successfully'));
+    }
 }
