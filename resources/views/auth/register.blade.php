@@ -1,5 +1,6 @@
 @extends('_layout.master')
 @section('content')
+<div class="text-light">
 <h1>{{ __("Register")}}</h1>
 @if ($errors->count() > 0)
     <div class="alert alert-danger" role="alert">
@@ -41,4 +42,5 @@
         <button class="btn btn-primary" type="submit">{{ __("Register") }}</button>
     </div>
 </form>
+</div>
 @endsection

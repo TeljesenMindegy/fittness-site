@@ -17,6 +17,7 @@ class PostRequest extends FormRequest
             'post.title' => 'required|max:190',
             'post.description' => 'required|max:190',
             'post.content' => 'required', //TODO: should have a max char length
+            'post.picture' => 'nullable|file|image|max:5000',
         ];
     }
 }

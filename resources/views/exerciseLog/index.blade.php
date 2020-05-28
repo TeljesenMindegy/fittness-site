@@ -1,6 +1,7 @@
 @extends('_layout.master')
 
 @section('content')
+    @if($trainingExercises->count() > 0)
     @foreach($trainingExercises as $key => $exercise)
             <div class="card text-center mb-3">
                 <div class="card-header bg-light">
@@ -22,4 +23,9 @@
                 </div>
             </div>
     @endforeach
+    @else
+        <div><p class="text-light">Empty exercise log</p>
+        
+        </div>
+    @endif
 @endsection

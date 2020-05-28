@@ -15,7 +15,7 @@
 <div class="card w-75 mt-5 mx-auto">
     <div class="card-header">{{ __('Publish post') }}</div>
     <div class="card-body">
-        <form action="{{ route('post.create') }}" method="POST">
+        <form action="{{ route('post.create') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <div class="form-group">
@@ -42,10 +42,13 @@
                 @endforeach
             </div>
 
+            <div class="form-group">
+                <input type="file" name="post[picture]" class="form-control">
+            </div>
+
             <div class="form-group text-right">
                 <button class="btn btn-primary" type="submit">{{ __('Publish') }}</button>
             </div>
-
         </form>
     </div>
 </div>

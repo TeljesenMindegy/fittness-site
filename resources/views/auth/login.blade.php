@@ -1,7 +1,7 @@
 @extends('_layout.master')
 
 @section('content')
-<div class="w-75 mx-auto">
+<div class="w-75 mx-auto text-light">
     <h1>{{ __("Login") }}</h1>
     @if ($errors->count())
         <div class="alert alert-danger">

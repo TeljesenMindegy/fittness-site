@@ -3,7 +3,14 @@
 @section('content')
     <div class="text-white">
     <h1>{{ $post->title }}</h1>
-    <p>{{ $post->description }}</p>
+    <div class="text-center">
+        @if($post->picture)
+            <a href="{{ route('post.show', $post) }}">
+                <img class="rounded post-thumbnail img-fluid" src="{{ asset('storage/' . $post->picture) }}" alt="{{ $post->title }}">
+            </a>
+        @endif
+    </div> 
+    <h5>{{ $post->description }}</h5>
     <div>
         {!! $post->content !!}
     </div>

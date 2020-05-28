@@ -15,7 +15,7 @@
 <div class="card w-75 mt-5 mx-auto">
     <div class="card-header">{{ __('Update') }} - {{ $post->title }}</div>
     <div class="card-body">
-        <form action="{{ route('post.edit', ['post' => $post]) }}" method="POST">
+        <form action="{{ route('post.edit', ['post' => $post]) }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <div class="form-group">
@@ -42,6 +42,13 @@
                 @endforeach
             </div>
 
+            <div class="form-group">
+                <label for="post[picture]">{{ __('Picture') }}</label>
+                <input type="file" name="post[picture]" class="form-control{{ $errors->has('post.picture') ? ' is-invalid' : '' }}" value="{{ old('post.picture', $post->picture) }}>
+                @foreach ($errors->get('post.picture') as $error)
+                    <p class="invalid-feedback">{{ $error }}</p>
+                @endforeach
+            </div>
             <div class="form-group text-right">
                 <button class="btn btn-primary" type="submit">{{ __('Update') }}</button>
             </div>
