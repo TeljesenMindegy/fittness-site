@@ -1,11 +1,24 @@
-<article class="post card mb-3">
-    <div class="card-body">
+<article class="p-1">
         @if (Auth::user()->hasRole("trainer"))
-        <h2 class="post-subtitle">
-            {{ $appointment->startTime."-".$appointment->endTime."-".$appointment->user->fullName}}
-        </h2>
+        <div class="card text-center">
+            <div class="card-body">
+                <h1><i class="fas fa-calendar-times"></i>{{ " " . date('d m Y', strtotime($appointment->startTime)) }}</h1>
+                <h5><i class="fas fa-clock"></i>
+                    {{ " Time: " . date('H:i', strtotime($appointment->startTime))
+                    . " - " . date('H:i', strtotime($appointment->endTime))  }}
+                </h5>
+                <h5><i class="fas fa-user"></i>{{ " Client: " . $appointment->user->fullName}}
+            </div>
+        </div>
         @else
-            {{ $appointment->startTime."-".$appointment->endTime}}
+        <div class="card text-center">
+            <div class="card-body">
+                <h1><i class="fas fa-calendar-times"></i>{{ " " . date('d m Y', strtotime($appointment->startTime)) }}</h1>
+                <h5><i class="fas fa-clock"></i>
+                    {{ " Time: " . date('H:i', strtotime($appointment->startTime))
+                    . " - " . date('H:i', strtotime($appointment->endTime))  }}
+                </h5>
+            </div>
+        </div>
         @endif
-    </div>
 </article>
