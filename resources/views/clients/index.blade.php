@@ -12,10 +12,10 @@
                 <select class="form-control{{ $errors->has('chosen.client_id') ? ' is-invalid' : '' }}" name="chosen[client_id]">
                     <option>{{ __("Select client") }}</option>
                     @foreach ($clients as $client)
-                        <option value="{{ $client->id }}" {{ $client->id == old('client.client_id') ? 'selected' : '' }}>{{ $client->user->FullName }}</option>
+                        <option value="{{ $client->user_id }}" {{ $client->id == old('client.client_id') ? 'selected' : '' }}>{{ $client->user->FullName }}</option>
                     @endforeach
                 </select>
-                @foreach ($errors->get('.client_id') as $error)
+                @foreach ($errors->get('chosen.client_id') as $error)
                 <p class="invalid-feedback">{{ $error }}</p>
                 @endforeach
             </div>

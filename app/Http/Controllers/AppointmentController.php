@@ -35,10 +35,18 @@ class AppointmentController extends Controller
 
     public function create()
     {
-        $users = User::all();
-        return view('appointments.create')
-            ->with([
-                'user_options' => $users
+        $clientsId = [];
+        foreach (User::all() as $user)
+        {
+            if (! $user->hasRole('trainer'))
+            {
+                $clientsId[] = $user->id;
+            }
+        }
+        $clients = User::all()->whereIn('id', $clientsId);
+
+        return view('appointments.create') ->with([
+                'user_options' => $clients
             ]);
     }
 
@@ -81,6 +89,5 @@ class AppointmentController extends Controller
         return redirect()
             ->route('appoinments.index')
             ->with('success', __('Post deleted successfully'));
-
     }
 }
