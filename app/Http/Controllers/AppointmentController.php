@@ -20,7 +20,7 @@ class AppointmentController extends Controller
     {
         if (Auth::user()->hasRole("trainer"))
         {
-            $appointments = Appointment::all();
+            $appointments = Appointment::whereYear('startTime','=', Carbon::now()->year);
         }
         else
         {
@@ -74,8 +74,13 @@ class AppointmentController extends Controller
             ->with('success', __('Appointment updated successfully'));
     }
 
-    public function destroy()
+    public function destroy(Appointment $appointment)
     {
-        //TODO: delete appointment
+        $appointment->delete();
+
+        return redirect()
+            ->route('appoinments.index')
+            ->with('success', __('Post deleted successfully'));
+
     }
 }

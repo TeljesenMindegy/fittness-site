@@ -18,6 +18,7 @@ class CreateAppointmentsTable extends Migration
             $table->dateTime('startTime');
             $table->dateTime('endTime');
             $table->bigInteger('user_id');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

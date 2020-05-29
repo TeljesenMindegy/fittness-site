@@ -35,6 +35,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('/appointments/record', 'AppointmentController@store');
     Route::get('/appointments/update/{appointment}', 'AppointmentController@edit')->name('appointment.edit');
     Route::post('/appointments/update/{appointment}', 'AppointmentController@update');
+    Route::post('/appointments/delete/{appointment}', 'AppointmentController@destroy')->name('appointment.delete');
 
     Route::group(['middleware' => 'check.role:trainer'], function() {
         Route::get('/clients', 'ClientController@index')->name('client.index');
