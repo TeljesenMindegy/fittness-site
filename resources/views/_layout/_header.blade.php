@@ -45,15 +45,19 @@
         {{-- <li class="nav-item active">
           <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
         </li> --}}
+        @auth
         <li class="nav-item">
           <a class="nav-link" href="{{ route('appointment.index') }}">{{ __("Appointments") }}</a>
         </li>
         {{-- <li class="nav-item">
           <a class="nav-link" href="#">{{ __("Meal plan") }}</a>
         </li> --}}
-        <li class="nav-item">
-          <a class="nav-link" href="{{ route('exerciseLog.index') }}">{{ __("Workout log") }}</a>
-        </li>
+        @if(!Auth::user()->hasRole('trainer'))
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('exerciseLog.index') }}">{{ __("Workout log") }}</a>
+          </li>
+        @endif
+        @endauth
       </ul>
     </div>
   </nav>

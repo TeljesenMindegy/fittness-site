@@ -17,7 +17,6 @@ class TrainingExercise extends Model
 
     public function appointment()
     {
-        return $this->belongsTo(Appointment::class)->withTrashed()->withTrashed();
+        return $this->belongsTo(Appointment::class)->withTrashed();
     }
-
 }
