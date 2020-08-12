@@ -18,13 +18,13 @@ class AppointmentController extends Controller
 
     public function index()
     {
-        if (Auth::user()->hasRole("trainer"))
+        if (Auth::user()->hasRole("Trainer"))
         {
-            $appointments = Appointment::whereYear('startTime','=', Carbon::now()->year);
+            $appointments = Appointment::whereYear('startTime', Carbon::now()->year)->get();
         }
         else
         {
-            $appointments = Appointment::whereMonth('startTime','=', Carbon::now()->month)->where('user_id', '=', Auth::user()->id)->get();
+            $appointments = Appointment::whereMonth('startTime', '=', Carbon::now()->month)->where('user_id', '=', Auth::user()->id)->get();
         }
 
         return view('appointments.index')
@@ -87,7 +87,7 @@ class AppointmentController extends Controller
         $appointment->delete();
 
         return redirect()
-            ->route('appoinments.index')
+            ->route('appointments.index')
             ->with('success', __('Post deleted successfully'));
     }
 }

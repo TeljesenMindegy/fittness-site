@@ -39,9 +39,11 @@ class LogController extends Controller
             ]);
     }
 
-    public function store(ExerciseLogRequest $request, Appointment $client)
+    public function store(ExerciseLogRequest $request, User $client)
     {
-        $client->exercises()
+        $appointment = Appointment::whereDate('startTime', \Carbon\Carbon::today())
+            ->where('user_id', '=', $client->id)->first();
+        $appointment->exercises()
             ->create($request->exerciseLog);
 
         return redirect()
